@@ -14,7 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('contents', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('content_id');
+            $table->string('content_name');
+            $table->string('content_image');
+            $table->string('content_url');
+            $table->boolean('is_one_account')->default(true);
+            $table->boolean('is_paid_subscription')->default(false);
             $table->timestamps();
         });
     }
