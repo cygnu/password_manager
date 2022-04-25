@@ -17,7 +17,13 @@ class ContentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'content_name' => $this->facker->company(),
+            'content_image' => $this->facker->imageUrl(),
+            'content_url' => $this->facker->url(),
+            'is_one_account' => $this->facker->boolean(15),
+            'is_paid_subscription' => $this->facker->boolean(10),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
