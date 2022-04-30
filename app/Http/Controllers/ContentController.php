@@ -19,16 +19,6 @@ class ContentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreContentRequest  $request
@@ -46,17 +36,6 @@ class ContentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Content $content)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Model\Content  $content
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Content $content)
     {
         //
     }
