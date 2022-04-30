@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContentRequest;
 use App\Http\Requests\UpdateContentRequest;
-use App\Models\Model\Content;
+use App\Models\Content;
 
 class ContentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * contents overview
      *
-     * @return \Illuminate\Http\Response
+     * @return Content[]\Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
-        //
+        return Content::all();
     }
 
     /**
