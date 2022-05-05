@@ -15,7 +15,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return Content::all();
+        return Content::orderByDesc('uuid')->get();
     }
 
     /**
