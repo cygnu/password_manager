@@ -68,6 +68,6 @@ class ContentController extends Controller
      */
     public function destroy(Content $content)
     {
-        //
+        return $content->delete() ? response()->json($content, 201) : response()->json([], 500);
     }
 }
