@@ -51,7 +51,13 @@ class ContentController extends Controller
      */
     public function update(UpdateContentRequest $request, Content $content)
     {
-        //
+        $content->content_name = $request->content_name;
+        $content->content_image = $request->content_image;
+        $content->content_url = $request->content_url;
+        $content->is_one_account = $request->is_one_account;
+        $content->is_paid_subscription = $request->is_paid_subscription;
+
+        return $content->update() ? response()->json($content) : response()->json([], 500);
     }
 
     /**
