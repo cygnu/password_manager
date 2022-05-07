@@ -26,7 +26,9 @@ class ContentController extends Controller
      */
     public function store(StoreContentRequest $request)
     {
-        //
+        $content = Content::create($request->all());
+
+        return $content ? response()->json($content, 201) : response()->json([], 500);
     }
 
     /**
