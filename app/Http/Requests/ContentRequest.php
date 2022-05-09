@@ -13,7 +13,7 @@ class ContentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class ContentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'content_name' => 'required',
+            'content_url' => 'required',
         ];
     }
 }
