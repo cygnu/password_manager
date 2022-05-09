@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Request\TaskRequest;
 use App\Http\Requests\StoreContentRequest;
 use App\Http\Requests\UpdateContentRequest;
 use App\Models\Content;
@@ -24,7 +25,7 @@ class ContentController extends Controller
      * @param  \App\Http\Requests\StoreContentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreContentRequest $request)
+    public function store(ContentRequest $request)
     {
         $content = Content::create($request->all());
 
@@ -49,7 +50,7 @@ class ContentController extends Controller
      * @param  \App\Models\Model\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateContentRequest $request, Content $content)
+    public function update(ContentRequest $request, Content $content)
     {
         $content->content_name = $request->content_name;
         $content->content_image = $request->content_image;
