@@ -12,12 +12,14 @@
     "devDependencies": {
         "@types/react": "^18.0.9",
         "@types/react-dom": "^18.0.3",
+        "@types/react-router-dom": "^5.3.3",
         "axios": "^0.25",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
+        "react-router-dom": "^6.3.0",
         "ts-loader": "^9.3.0",
         "typescript": "^4.6.4"
     }
