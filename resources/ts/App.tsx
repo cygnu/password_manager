@@ -1,7 +1,8 @@
 import React from 'react'
+import { Router } from './router'
 
 export const App = () => {
     return (
-        <h1>Laravel</h1>
+        <Router />
     )
 }
