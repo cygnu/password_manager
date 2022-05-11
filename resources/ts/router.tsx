@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { ContentPage } from './pages/content'
 
 export const Router = () => {
     return (
@@ -8,7 +9,7 @@ export const Router = () => {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to="/">ContentPage</Link>
                         </li>
                         <li>
                             <Link to="/about">About</Link>
@@ -21,15 +22,11 @@ export const Router = () => {
                 <Routes>
                     <Route path="/about" element={<About />} />
                     <Route path="/users" element={<Users />} />
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<ContentPage />} />
                 </Routes>
             </div>
         </BrowserRouter>
     )
-}
-
-function Home() {
-    return <h2>Home</h2>;
 }
 
 function About() {
