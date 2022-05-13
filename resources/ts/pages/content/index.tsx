@@ -7,7 +7,7 @@ import {
     Typography,
 } from '@mui/material'
 
-export const ContentPage = () => {
+export const ContentsPage = () => {
     return (
         <React.Fragment>
             <Box sx={{ border: '1px solid', maxWidth: 800 }}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import { ContentPage } from './pages/content'
+import { ContentsPage } from './pages/content'
 
 export const Router = () => {
     return (
@@ -22,7 +22,7 @@ export const Router = () => {
                 <Routes>
                     <Route path="/about" element={<About />} />
                     <Route path="/users" element={<Users />} />
-                    <Route path="/" element={<ContentPage />} />
+                    <Route path="/" element={<ContentsPage />} />
                 </Routes>
             </div>
         </BrowserRouter>
