@@ -36,10 +36,16 @@ export const ContentsPage = () => {
     )
 }
 
-const container = css``
+const container = css`
+    margin-top: 64px;
+`
 
 const containerBox = css`
+    margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
     border: 1px solid;
+    border-radius: 10px;
 `
 
 const cBContent = css`
@@ -50,7 +56,7 @@ const cBContent = css`
 `
 
 const cBCImage = css`
-    font_size: 60px;
+    font-size: 60px;
 `
 
 const cBCButton = css``
