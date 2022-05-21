@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import React, { useEffect } from 'react'
+import axios from 'axios'
 import { Image } from '@mui/icons-material'
 import {
     Box,
@@ -9,7 +10,16 @@ import {
 } from '@mui/material'
 import { css } from '@emotion/react'
 
-export const ContentsPage = () => {
+export const ContentsPage: React.FC = () => {
+    const getContents = async () => {
+        const data = await axios.get('api/contents')
+        console.log(data);
+    }
+
+    useEffect(() => {
+        getContents();
+    })
+
     return (
         <div css={container}>
             <Box css={containerBox}>
