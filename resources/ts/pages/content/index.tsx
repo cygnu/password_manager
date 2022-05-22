@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Image } from '@mui/icons-material'
 import {
@@ -10,10 +10,22 @@ import {
 } from '@mui/material'
 import { css } from '@emotion/react'
 
+type Content = {
+    content_id: string
+    content_name: string
+    content_image: string
+    content_url: string
+    is_one_account: boolean
+    is_paid_subscription: boolean
+    created_at: Date
+    updated_at: Date
+}
+
 export const ContentsPage: React.FC = () => {
+    const [contents, setContents] = useState<Content[]>([]);
     const getContents = async () => {
-        const data = await axios.get('api/contents')
-        console.log(data);
+        const { data } = await axios.get<Content[]>('api/contents')
+        setContents(data);
     }
 
     useEffect(() => {
@@ -24,22 +36,15 @@ export const ContentsPage: React.FC = () => {
         <div css={container}>
             <Box css={containerBox}>
                 <CardContent css={cBContent}>
-                    <Image
-                        css={cBCImage}
-                    />
-                    <Button css={cBCButton}>
-                        <Typography>Amazon</Typography>
-                    </Button>
-                    <Typography css={cBCTypography}>https://amazon.com</Typography>
-                </CardContent>
-                <CardContent css={cBContent}>
-                    <Image
-                        css={cBCImage}
-                    />
-                    <Button css={cBCButton}>
-                        <Typography>Amazon</Typography>
-                    </Button>
-                    <Typography css={cBCTypography}>https://amazon.com</Typography>
+                    {contents.map(content => (
+                        <li key={content.content_id}>
+                            <Image css={cBCImage} />
+                                <Button css={cBCButton}>
+                                    <Typography>{content.content_name}</Typography>
+                                </Button>
+                            <Typography css={cBCTypography}>{content.content_url}</Typography>
+                        </li>
+                    ))}
                 </CardContent>
             </Box>
         </div>
