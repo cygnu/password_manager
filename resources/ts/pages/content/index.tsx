@@ -37,11 +37,11 @@ export const ContentsPage: React.FC = () => {
             <Box css={containerBox}>
                 <CardContent css={cBContent}>
                     {contents.map(content => (
-                        <li key={content.content_id}>
+                        <li key={content.content_id} css={cBCLi}>
                             <Image css={cBCImage} />
-                                <Button css={cBCButton}>
-                                    <Typography>{content.content_name}</Typography>
-                                </Button>
+                            <Button css={cBCButton}>
+                                <Typography>{content.content_name}</Typography>
+                            </Button>
                             <Typography css={cBCTypography}>{content.content_url}</Typography>
                         </li>
                     ))}
@@ -63,7 +63,9 @@ const containerBox = css`
     border-radius: 10px;
 `
 
-const cBContent = css`
+const cBContent = css``
+
+const cBCLi = css`
     display: flex;
     align-items: center;
     height: 60px;
@@ -71,9 +73,26 @@ const cBContent = css`
 `
 
 const cBCImage = css`
-    font-size: 60px;
+    height: 60px;
+    width: 60px;
 `
 
-const cBCButton = css``
+const cBCButton = css`
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    height: 45px;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+`
 
-const cBCTypography = css``
+const cBCTypography = css`
+    flex-grow: 1;
+    display: -webkit-inline-box;
+    padding-left: 10px;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+`
