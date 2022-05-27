@@ -14,7 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('account_id');
+            $table->string('account_name');
+            $table->foreignUuid('content_id');
+            $table->string('email_address');
+            $table->string('password');
+            $table->boolean('is_multi_factor_authentication')->default(false);
+            $table->boolean('is_use_oauth2')->default(false);
             $table->timestamps();
         });
     }
