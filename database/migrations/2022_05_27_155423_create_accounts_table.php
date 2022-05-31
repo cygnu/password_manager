@@ -16,17 +16,16 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->uuid('account_id');
             $table->string('account_name');
-            $table->uuid('content_id');
+            $table->uuid('content_id')
+                  ->foreign('content_id')
+                  ->references('id')
+                  ->on('contents')
+                  ->onDelete('cascade');
             $table->string('email_address');
             $table->string('password');
             $table->boolean('is_multi_factor_authentication')->default(false);
             $table->boolean('is_use_oauth2')->default(false);
             $table->timestamps();
-
-            $table->foreign('content_id')
-                  ->references('content_id')
-                  ->on('contents')
-                  ->onDelete('cascade');
         });
     }
 
