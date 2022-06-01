@@ -13,4 +13,12 @@ class Account extends Model
     {
         return $this->belongsTo(Content::class);
     }
+
+    protected $fillable = [
+        'account_name',
+        'email_address',
+        'password',
+        'is_multi_factor_authentication',
+        'is_use_oauth2',
+    ];
 }
