@@ -9,6 +9,11 @@ class Content extends Model
 {
     use HasFactory;
 
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
     protected $fillable = [
         'content_name',
         'content_image',
