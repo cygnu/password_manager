@@ -19,7 +19,6 @@ class ContentFactory extends Factory
     public function definition()
     {
         return [
-            'content_id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
             'content_name' => $this->faker->company(),
             'content_image' => $this->faker->imageUrl($width=640, $height=480),
             'content_url' => $this->faker->url(),

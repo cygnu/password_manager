@@ -18,7 +18,6 @@ class AccountFactory extends Factory
     public function definition()
     {
         return [
-            'account_id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
             'account_name' => $this->faker->company(),
             'content_id' => Content::factory(),
             'email_address' => $this->faker->unique()->safeEmail(),

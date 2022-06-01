@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->uuid('account_id');
+            $table->bigIncrements('account_id');
             $table->string('account_name');
-            $table->uuid('content_id')
+            $table->unsignedBigInteger('content_id')
                   ->foreign('content_id')
                   ->references('id')
                   ->on('contents')
