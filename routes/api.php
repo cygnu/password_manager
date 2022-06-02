@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ContentController;
 
 /*
@@ -16,6 +17,8 @@ use App\Http\Controllers\ContentController;
 */
 
 Route::apiResource('contents', ContentController::class);
+
+Route::apiResource('accounts', AccountController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
