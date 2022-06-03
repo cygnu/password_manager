@@ -46,22 +46,24 @@ class ContentController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateContentRequest  $request
-     * @param  \App\Models\Model\Content  $content
-     * @return \Illuminate\Http\Response
-     */
-    public function update(ContentRequest $request, Content $content)
-    {
-        $content->content_name = $request->content_name;
-        $content->content_image = $request->content_image;
-        $content->content_url = $request->content_url;
-        $content->is_one_account = $request->is_one_account;
-        $content->is_paid_subscription = $request->is_paid_subscription;
+    public function updateContent(Request $request, $content_id) {
+        if (Content::where('content_id', $content_id)->exists()) {
+            $Content = Content::find($content_id);
+            $content->content_name = is_null($request->content_name) ? $content->content_name : $request -> content_name;
+            $content->content_image = $request->content_image;
+            $content->content_url = is_null($request->content_url) ? $content->content_url : $request -> content_url;
+            $content->is_one_account = $request->is_one_account;
+            $content->is_paid_subscription = $request->is_paid_subscription;
+            $Content->save();
 
-        return $content->update() ? response()->json($content) : response()->json([], 500);
+            return response()->json([
+                "message" => "Records updated successfully"
+            ], 200);
+            } else {
+            return response()->json([
+                "message" => "Content not found"
+            ], 404);
+        }
     }
 
     /**
