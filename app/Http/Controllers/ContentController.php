@@ -19,17 +19,19 @@ class ContentController extends Controller
         return response($contents, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreContentRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ContentRequest $request)
+    public function createContent(Request $request)
     {
-        $content = Content::create($request->all());
+        $content = new Content;
+        $content->content_name = $request->content_name;
+        $content->content_image = $request->content_image;
+        $content->content_url = $request->content_url;
+        $content->is_one_account = $request->is_one_account;
+        $content->is_paid_subscription = $request->is_paid_subscription;
+        $content->save();
 
-        return $content ? response()->json($content, 201) : response()->json([], 500);
+        return response()->json([
+            "message" => "Content record created"
+        ], 201);
     }
 
     /**
