@@ -11,12 +11,12 @@ class ContentController extends Controller
 {
     /**
      * contents overview
-     *
-     * @return Content[]\Illuminate\Database\Eloquent\Collection
      */
-    public function index()
+    public function getAllContents()
     {
-        return Content::orderByDesc('updated_at')->paginate(20);
+        $contents = Content::orderByDesc('updated_at')->paginate(20);
+
+        return response($contents, 200);
     }
 
     /**
