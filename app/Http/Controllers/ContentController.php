@@ -66,14 +66,19 @@ class ContentController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Model\Content  $content
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Content $content)
+    public function deleteContent ($content_id)
     {
-        return $content->delete() ? response()->json($content, 201) : response()->json([], 500);
+        if(Content::where('content_id', $content_id)->exists()) {
+          $content = Content::find($content_id);
+          $content->delete();
+
+          return response()->json([
+            "message" => "Records deleted"
+          ], 202);
+        } else {
+          return response()->json([
+            "message" => "Content not found"
+          ], 404);
+        }
     }
 }
