@@ -34,15 +34,16 @@ class ContentController extends Controller
         ], 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Model\Content  $content
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Content $content)
+    public function getContent($content_id)
     {
-        //
+        if (Content::where('content_id', $content_id)->exists()) {
+            $content = Content::where('content_id', $content_id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($content, 200);
+        } else {
+            return response()->json([
+              "message" => "Content not found"
+            ], 404);
+        }
     }
 
     /**
