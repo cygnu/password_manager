@@ -16,7 +16,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return Content::orderByDesc('created_at')->get();
+        return Content::orderByDesc('updated_at')->paginate(20);
     }
 
     /**
