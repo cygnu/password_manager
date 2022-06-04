@@ -20,22 +20,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('accounts', 'AccountController@getAllAccounts');
+Route::get('/accounts', [AccountController::class, 'getAllAccounts']);
 
-Route::get('account/{account_id}', 'AccountController@getAccount');
+Route::get('/account/{account_id}', [AccountController::class, '@getAccount']);
 
-Route::post('accounts', 'AccountController@createAccount');
+Route::post('/accounts', [AccountController::class, 'createAccount']);
 
-Route::put('accounts/{account_id}', 'AccountController@updateAccount');
+Route::put('/accounts/{account_id}', [AccountController::class, 'updateAccount']);
 
-Route::delete('accounts/{account_id}', 'AccountController@deleteAccount');
+Route::delete('/accounts/{account_id}', [AccountController::class, 'deleteAccount']);
 
-Route::get('contents', 'ContentController@getAllContents');
+Route::get('/contents', [ContentController::class, 'getAllContents']);
 
-Route::get('content/{content_id}', 'ContentController@getContent');
+Route::get('/content/{content_id}', [ContentController::class, 'getContent']);
 
-Route::post('contents', 'ContentController@createContent');
+Route::post('/contents', [ContentController::class, 'createContent']);
 
-Route::put('contents/{content_id}', 'ContentController@updateContent');
+Route::put('/contents/{content_id}', [ContentController::class, 'updateContent']);
 
-Route::delete('contents/{content_id}', 'ContentController@deleteContent');
+Route::delete('/contents/{content_id}', [ContentController::class, 'deleteContent']);
