@@ -15,15 +15,20 @@ class AccountController extends Controller
         return response($accounts, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreAccountRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreAccountRequest $request)
+    public function createAccount(Request $request)
     {
-        //
+        $account = new Account;
+        $account->account_name = $request->account_name;
+        $account->account_image = $request->account_image;
+        $account->email_address = $request->email_address;
+        $account->password = $request->password;
+        $account->is_multi_factor_authentication = $request->is_multi_factor_authentication;
+        $account->is_use_oauth2 = $request->is_use_oauth2;
+        $account->save();
+
+        return response()->json([
+            "message" => "Account record created"
+        ], 201);
     }
 
     /**
