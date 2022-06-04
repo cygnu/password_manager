@@ -31,15 +31,16 @@ class AccountController extends Controller
         ], 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Account  $account
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Account $account)
+    public function getAccount($account_id)
     {
-        //
+        if (Account::where('account_id', $account_id)->exists()) {
+            $account = Account::where('account_id', $account_id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($account, 200);
+        } else {
+            return response()->json([
+              "message" => "Account not found"
+            ], 404);
+        }
     }
 
     /**
