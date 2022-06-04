@@ -43,16 +43,24 @@ class AccountController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateAccountRequest  $request
-     * @param  \App\Models\Account  $account
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateAccountRequest $request, Account $account)
-    {
-        //
+    public function updateAccount(Request $request, $account_id) {
+        if (Account::where('$account_id', $account_id)->exists()) {
+            $account = Account::find($account_id);
+            $account->account_name = is_null($request->account_name) ? $account->account_name : $request->account_name;
+            $account->email_address = $request->email_address;
+            $account->password = $request->password;
+            $account->is_multi_factor_authentication = $request->is_multi_factor_authentication;
+            $account->is_use_oauth2 = $request->is_use_oauth2;
+            $account->save();
+
+            return response()->json([
+                "message" => "Records updated successfully"
+            ], 200);
+            } else {
+            return response()->json([
+                "message" => "Account not found"
+            ], 404);
+        }
     }
 
     /**

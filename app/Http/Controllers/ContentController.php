@@ -48,13 +48,13 @@ class ContentController extends Controller
 
     public function updateContent(Request $request, $content_id) {
         if (Content::where('content_id', $content_id)->exists()) {
-            $Content = Content::find($content_id);
-            $content->content_name = is_null($request->content_name) ? $content->content_name : $request -> content_name;
+            $content = Content::find($content_id);
+            $content->content_name = is_null($request->content_name) ? $content->content_name : $request->content_name;
             $content->content_image = $request->content_image;
-            $content->content_url = is_null($request->content_url) ? $content->content_url : $request -> content_url;
+            $content->content_url = is_null($request->content_url) ? $content->content_url : $request->content_url;
             $content->is_one_account = $request->is_one_account;
             $content->is_paid_subscription = $request->is_paid_subscription;
-            $Content->save();
+            $content->save();
 
             return response()->json([
                 "message" => "Records updated successfully"
