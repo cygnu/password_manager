@@ -8,14 +8,11 @@ use App\Models\Account;
 
 class AccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getAllAccounts()
     {
-        //
+        $accounts = Account::orderByDesc('updated_at')->paginate(20);
+
+        return response($accounts, 200);
     }
 
     /**
