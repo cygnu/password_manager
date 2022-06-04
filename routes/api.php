@@ -20,6 +20,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('accounts', 'AccountController@getAllAccounts');
+
+Route::get('account/{account_id}', 'AccountController@getAccount');
+
+Route::post('accounts', 'AccountController@createAccount');
+
+Route::put('accounts/{account_id}', 'AccountController@updateAccount');
+
+Route::delete('accounts/{account_id}', 'AccountController@deleteAccount');
+
 Route::get('contents', 'ContentController@getAllContents');
 
 Route::get('content/{content_id}', 'ContentController@getContent');
