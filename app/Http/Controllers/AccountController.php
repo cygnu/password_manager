@@ -63,14 +63,19 @@ class AccountController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Account  $account
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Account $account)
+    public function deleteAccount ($account_id)
     {
-        //
+        if(Account::where('account_id', $account_id)->exists()) {
+          $account = Account::find($account_id);
+          $account->delete();
+
+          return response()->json([
+            "message" => "Records deleted"
+          ], 202);
+        } else {
+          return response()->json([
+            "message" => "Account not found"
+          ], 404);
+        }
     }
 }
