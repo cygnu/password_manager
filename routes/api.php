@@ -16,10 +16,16 @@ use App\Http\Controllers\ContentController;
 |
 */
 
-Route::apiResource('contents', ContentController::class);
-
-Route::apiResource('accounts', AccountController::class);
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('contents', 'ContentController@getAllContents');
+
+Route::get('content/{content_id}', 'ContentController@getContent');
+
+Route::post('contents', 'ContentController@createContent');
+
+Route::put('contents/{content_id}', 'ContentController@updateContent');
+
+Route::delete('contents/{content_id}', 'ContentController@deleteContent');
