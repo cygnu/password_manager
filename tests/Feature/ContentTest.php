@@ -12,10 +12,11 @@ class ContentTest extends TestCase
      * A basic feature test example.
      *
      * @return void
+     * @test
      */
-    public function test_example()
+    public function get_all_contents()
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/contents');
 
         $response->assertStatus(200);
     }
