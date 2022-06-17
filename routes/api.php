@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/accounts', [AccountController::class, 'getAllAccounts']);
 
-Route::get('/account/{account_id}', [AccountController::class, '@getAccount']);
+Route::get('/account/{account_id}', [AccountController::class, 'getAccount']);
 
 Route::post('/accounts', [AccountController::class, 'createAccount']);
 
