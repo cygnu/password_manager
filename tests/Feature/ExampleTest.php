@@ -8,14 +8,21 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
-     *
      * @return void
+     * @test
      */
-    public function test_the_application_returns_a_successful_response()
+    public function health_check()
     {
-        $response = $this->get('/');
+        dd(env('APP_ENV'), env('DB_DATABASE'), env('DB_CONNECTION'));
+    }
 
-        $response->assertStatus(200);
+    /**
+     * @return void
+     * @test
+     */
+    public function set_up()
+    {
+        parent::setUp();
+        $this->seed('AccountSeeder');
     }
 }
