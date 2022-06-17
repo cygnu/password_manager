@@ -20,4 +20,15 @@ class ContentTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function get_content()
+    {
+        $response = $this->get('/api/content/1');
+
+        $response->assertStatus(200);
+    }
 }
