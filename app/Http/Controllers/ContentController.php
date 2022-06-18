@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\TaskRequest;
+use App\Http\Requests\ContentRequest;
 use App\Http\Requests\StoreContentRequest;
 use App\Http\Requests\UpdateContentRequest;
 use App\Models\Content;
