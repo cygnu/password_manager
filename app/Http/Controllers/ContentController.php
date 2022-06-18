@@ -46,7 +46,8 @@ class ContentController extends Controller
         }
     }
 
-    public function updateContent(Request $request, $content_id) {
+    public function updateContent(Request $request, $content_id)
+    {
         if (Content::where('content_id', $content_id)->exists()) {
             $content = Content::find($content_id);
             $content->content_name = is_null($request->content_name) ? $content->content_name : $request->content_name;
@@ -66,7 +67,7 @@ class ContentController extends Controller
         }
     }
 
-    public function deleteContent ($content_id)
+    public function deleteContent($content_id)
     {
         if(Content::where('content_id', $content_id)->exists()) {
           $content = Content::find($content_id);
