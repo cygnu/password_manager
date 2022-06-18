@@ -43,7 +43,8 @@ class AccountController extends Controller
         }
     }
 
-    public function updateAccount(Request $request, $account_id) {
+    public function updateAccount(Request $request, $account_id)
+    {
         if (Account::where('$account_id', $account_id)->exists()) {
             $account = Account::find($account_id);
             $account->account_name = is_null($request->account_name) ? $account->account_name : $request->account_name;
@@ -63,7 +64,7 @@ class AccountController extends Controller
         }
     }
 
-    public function deleteAccount ($account_id)
+    public function deleteAccount($account_id)
     {
         if(Account::where('account_id', $account_id)->exists()) {
           $account = Account::find($account_id);
