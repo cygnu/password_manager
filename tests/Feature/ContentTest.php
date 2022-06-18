@@ -57,7 +57,7 @@ class ContentTest extends TestCase
      */
     public function update_content()
     {
-        $response = $this->put('/api/contents/1', [
+        $response = $this->put('/api/content/1', [
             "content_name" => "bar",
             "content_image" => "https://via.placeholder.com/640x480.png/004400?text=perspiciatis",
             "content_url" => "http://www.denesik.net/aut-ut-blanditiis-occaecati-et.html",

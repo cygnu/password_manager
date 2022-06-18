@@ -26,9 +26,9 @@ Route::get('/account/{account_id}', [AccountController::class, 'getAccount']);
 
 Route::post('/accounts', [AccountController::class, 'createAccount']);
 
-Route::put('/accounts/{account_id}', [AccountController::class, 'updateAccount']);
+Route::put('/account/{account_id}', [AccountController::class, 'updateAccount']);
 
-Route::delete('/accounts/{account_id}', [AccountController::class, 'deleteAccount']);
+Route::delete('/account/{account_id}', [AccountController::class, 'deleteAccount']);
 
 Route::get('/contents', [ContentController::class, 'getAllContents']);
 
@@ -36,6 +36,6 @@ Route::get('/content/{content_id}', [ContentController::class, 'getContent']);
 
 Route::post('/contents', [ContentController::class, 'createContent']);
 
-Route::put('/contents/{content_id}', [ContentController::class, 'updateContent']);
+Route::put('/content/{content_id}', [ContentController::class, 'updateContent']);
 
-Route::delete('/contents/{content_id}', [ContentController::class, 'deleteContent']);
+Route::delete('/content/{content_id}', [ContentController::class, 'deleteContent']);
