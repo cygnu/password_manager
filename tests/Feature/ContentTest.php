@@ -31,4 +31,21 @@ class ContentTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function create_content()
+    {
+        $response = $this->post('/api/contents', [
+            "content_name" => "foo",
+            "content_image" => "https://via.placeholder.com/640x480.png/004400?text=perspiciatis",
+            "content_url" => "http://www.denesik.net/aut-ut-blanditiis-occaecati-et.html",
+            "is_one_account" => true,
+            "is_paid_subscription" => false
+        ]);
+
+        $response->assertStatus(201);
+    }
 }
