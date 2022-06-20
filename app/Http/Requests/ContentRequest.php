@@ -24,8 +24,11 @@ class ContentRequest extends FormRequest
     public function rules()
     {
         return [
-            'content_name' => 'required',
-            'content_url' => 'required',
+            'content_name' => 'required|string|max:255',
+            'content_image' => 'string|max:255',
+            'content_url' => 'required|url|max:255',
+            'is_one_account' => 'boolean',
+            'is_paid_subscription' => 'boolean'
         ];
     }
 }
