@@ -19,7 +19,7 @@ class ContentController extends Controller
         return response($contents, 200);
     }
 
-    public function createContent(Request $request)
+    public function createContent(ContentRequest $request)
     {
         $content = new Content;
         $content->content_name = $request->content_name;
@@ -46,7 +46,7 @@ class ContentController extends Controller
         }
     }
 
-    public function updateContent(Request $request, $content_id)
+    public function updateContent(ContentRequest $request, $content_id)
     {
         if (Content::where('content_id', $content_id)->exists()) {
             $content = Content::find($content_id);
