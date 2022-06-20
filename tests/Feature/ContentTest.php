@@ -47,7 +47,7 @@ class ContentTest extends TestCase
         ]);
 
         $response->assertStatus(201)->assertJson([
-            'create' => true
+            'message' => 'Content record created'
         ]);
     }
 
