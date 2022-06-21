@@ -71,4 +71,17 @@ class ContentTest extends TestCase
             'message' => 'Records updated successfully'
         ]);
     }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function delete_content()
+    {
+        $response = $this->delete('/api/content/1');
+
+        $response->assertStatus(202)->assertJson([
+            'message' => 'Records deleted'
+        ]);
+    }
 }
