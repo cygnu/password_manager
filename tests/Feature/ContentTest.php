@@ -27,7 +27,6 @@ class ContentTest extends TestCase
     }
 
     /**
-     * @return void
      * @test
      */
     public function get_content()
