@@ -14,6 +14,8 @@ class Content extends Model
         return $this->hasMany(Account::class);
     }
 
+    protected $primaryKey = 'content_id';
+
     protected $fillable = [
         'content_name',
         'content_image',
