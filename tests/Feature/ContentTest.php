@@ -78,10 +78,17 @@ class ContentTest extends TestCase
      */
     public function delete_content()
     {
+        $contents = Content::factory()->count(10)->create();
+
         $response = $this->delete('/api/content/1');
 
-        $response->assertStatus(202)->assertJson([
-            'message' => 'Records deleted'
-        ]);
+        $response
+            ->assertStatus(202)
+            ->assertJson([
+                'message' => 'Records deleted'
+            ]);
+
+        $response
+            ->assertJsonCount($contents->count() - 1);
     }
 }
