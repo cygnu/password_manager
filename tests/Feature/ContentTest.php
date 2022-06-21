@@ -8,17 +8,22 @@ use Tests\TestCase;
 
 class ContentTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
-     * @return void
      * @test
      */
     public function get_all_contents()
     {
+        $contents = Content::factory()->count(10)->create();
+
         $response = $this->get('/api/contents');
 
-        $response->assertStatus(200);
+        $response
+            ->assertStatus(200)
+            ->assertJsonCount($contents->count());
     }
 
     /**
