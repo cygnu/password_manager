@@ -57,6 +57,8 @@ class ContentTest extends TestCase
      */
     public function update_content()
     {
+        $this->withoutExceptionHandling();
+
         $response = $this->put('/api/content/1', [
             "content_name" => "bar",
             "content_image" => "https://via.placeholder.com/640x480.png/004400?text=perspiciatis",
@@ -65,8 +67,8 @@ class ContentTest extends TestCase
             "is_paid_subscription" => true
         ]);
 
-        $response->assertStatus(201)->assertJson([
-            'create' => true
-        ]);;
+        $response->assertStatus(200)->assertJson([
+            'message' => 'Records updated successfully'
+        ]);
     }
 }
