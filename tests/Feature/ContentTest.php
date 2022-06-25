@@ -58,13 +58,11 @@ class ContentTest extends TestCase
             "is_paid_subscription" => false
         ];
 
-        $response = $this->post('/api/contents', $data);
+        $response = $this->postJson('/api/contents', $data);
 
         $response
             ->assertStatus(201)
-            ->assertJson([
-                'message' => 'Content record created'
-            ]);
+            ->assertJsonFragment($data);
     }
 
     /**
