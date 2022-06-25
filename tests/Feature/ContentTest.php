@@ -90,14 +90,15 @@ class ContentTest extends TestCase
     }
 
     /**
-     * @return void
      * @test
      */
     public function delete_content()
     {
-        $contents = Content::factory()->count(10)->create();
+        $contents = Content::factory()->count(5)->create();
+        $first_content_id= $contents->toArray()[0]["content_id"];
+        dump($first_content_id);
 
-        $response = $this->delete('/api/content/1');
+        $response = $this->deleteJson("/api/content/$first_content_id");
 
         $response
             ->assertStatus(202)
@@ -105,7 +106,6 @@ class ContentTest extends TestCase
                 'message' => 'Records deleted'
             ]);
 
-        $response
-            ->assertJsonCount($contents->count() - 1);
+        // $result = $this->get('/api/contents?page=1');
     }
 }
