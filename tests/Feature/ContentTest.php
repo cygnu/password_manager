@@ -66,24 +66,27 @@ class ContentTest extends TestCase
     }
 
     /**
-     * @return void
      * @test
      */
     public function update_content()
     {
-        $this->withoutExceptionHandling();
+        $content = Content::factory()->create();
 
-        $response = $this->put('/api/content/1', [
+        $data = [
             "content_name" => "bar",
             "content_image" => "https://via.placeholder.com/640x480.png/004400?text=perspiciatis",
             "content_url" => "http://www.denesik.net/aut-ut-blanditiis-occaecati-et.html",
             "is_one_account" => false,
             "is_paid_subscription" => true
-        ]);
+        ];
 
-        $response->assertStatus(200)->assertJson([
-            'message' => 'Records updated successfully'
-        ]);
+        $this->withoutExceptionHandling();
+
+        $response = $this->putJson("api/content/{$content->content_id}", $data);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment($data);
     }
 
     /**
