@@ -12,19 +12,21 @@ class ContentTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * A basic feature test example.
-     *
      * @test
      */
     public function get_all_contents()
     {
-        $contents = Content::factory()->count(10)->create();
+        $contents = Content::factory()->count(5)->create();
+        // dump($contents->toArray());
 
-        $response = $this->get('/api/contents');
+        $response = $this->getJson('/api/contents?page=1');
+
+        // $result = $response->json()["data"];
+        // echo count($response->json());
+        // echo count($result);
 
         $response
-            ->assertStatus(200)
-            ->assertJsonCount($contents->count());
+            ->assertStatus(200);
     }
 
     /**
