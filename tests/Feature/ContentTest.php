@@ -34,7 +34,13 @@ class ContentTest extends TestCase
      */
     public function get_content()
     {
-        $response = $this->get('/api/content/1');
+        $contents = Content::factory()->count(5)->create();
+
+        $first_content_id= $contents->toArray()[0]["content_id"];
+        dump($first_content_id);
+
+        $response = $this->getJson("/api/content/$first_content_id");
+        // dd($response);
 
         $response->assertStatus(200);
     }
