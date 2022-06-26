@@ -90,6 +90,27 @@ class ContentTest extends TestCase
     /**
      * @test
      */
+    public function it_cannot_be_created_is_longer_than_255_characters()
+    {
+        $data = [
+            "content_name" => str_repeat("a", 256),
+            "content_image" => "https://via.placeholder.com/640x480.png/004400?text=perspiciatis",
+            "content_url" => "http://www.denesik.net/aut-ut-blanditiis-occaecati-et.html",
+            "is_one_account" => true,
+            "is_paid_subscription" => false
+        ];
+
+        $response = $this->postJson('/api/contents', $data);
+        $response
+            ->assertStatus(422)
+            ->assertJsonValidationErrors([
+                "content_name" => "The content name must not be greater than 255 characters."
+            ]);
+    }
+
+    /**
+     * @test
+     */
     public function update_content()
     {
         $content = Content::factory()->create();
