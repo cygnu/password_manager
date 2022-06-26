@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContentRequest;
-use App\Http\Requests\StoreContentRequest;
-use App\Http\Requests\UpdateContentRequest;
 use App\Models\Content;
 
 class ContentController extends Controller
@@ -16,7 +14,7 @@ class ContentController extends Controller
     {
         $contents = Content::orderByDesc('updated_at')->paginate(20);
 
-        return response($contents, 200);
+        return response()->json($contents, 200);
     }
 
     public function createContent(ContentRequest $request)
