@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAccountRequest;
-use App\Http\Requests\UpdateAccountRequest;
 use App\Models\Account;
 
 class AccountController extends Controller
 {
     public function getAllAccounts()
     {
-        $accounts = Account::orderByDesc('updated_at')->paginate(20);
+        $accounts = Account::orderByDesc('updated_at');
 
-        return response($accounts, 200);
+        return response()->json($accounts, 200);
     }
 
     public function createAccount(Request $request)
