@@ -43,21 +43,22 @@ class AccountController extends Controller
         }
     }
 
-    public function updateAccount(Request $request, $account_id)
+    public function updateAccount(AccountRequest $request, $account_id)
     {
-        if (Account::where('$account_id', $account_id)->exists()) {
+        if (Account::where('account_id', $account_id)->exists()) {
             $account = Account::find($account_id);
             $account->account_name = is_null($request->account_name) ? $account->account_name : $request->account_name;
+            $account->content_id = is_null($request->content_id) ? $account->content_id : $request->content_id;
             $account->email_address = $request->email_address;
             $account->password = $request->password;
             $account->is_multi_factor_authentication = $request->is_multi_factor_authentication;
             $account->is_use_oauth2 = $request->is_use_oauth2;
             $account->save();
 
-            return response()->json([
-                "message" => "Records updated successfully"
-            ], 200);
-            } else {
+            return $account->update()
+                ? response()->json($account, 200)
+                : response()->json([], 500);
+        } else {
             return response()->json([
                 "message" => "Account not found"
             ], 404);
