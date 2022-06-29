@@ -68,16 +68,16 @@ class AccountController extends Controller
     public function deleteAccount($account_id)
     {
         if(Account::where('account_id', $account_id)->exists()) {
-          $account = Account::find($account_id);
-          $account->delete();
+            $account = Account::find($account_id);
+            $account->delete();
 
-          return response()->json([
-            "message" => "Records deleted"
-          ], 202);
+            return response()->json([
+                "message" => "Records deleted"
+            ], 202);
         } else {
-          return response()->json([
-            "message" => "Account not found"
-          ], 404);
+            return response()->json([
+                "message" => "Account not found"
+            ], 404);
         }
     }
 }
