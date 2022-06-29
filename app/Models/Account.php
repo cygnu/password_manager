@@ -14,6 +14,8 @@ class Account extends Model
         return $this->belongsTo(Content::class);
     }
 
+    protected $primaryKey = 'account_id';
+
     protected $fillable = [
         'account_name',
         'content_id',
