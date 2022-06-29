@@ -36,7 +36,7 @@ class ContentController extends Controller
     {
         if (Content::where('content_id', $content_id)->exists()) {
             $content = Content::where('content_id', $content_id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($content, 200);
+            return response()->json($content, 200);
         } else {
             return response()->json([
               "message" => "Content not found"
