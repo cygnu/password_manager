@@ -27,7 +27,9 @@ class ContentController extends Controller
         $content->is_paid_subscription = $request->is_paid_subscription;
         $content->save();
 
-        return response($content, 201);
+        return $content
+            ? response()->json($content, 201)
+            : response()->json([], 500);
     }
 
     public function getContent($content_id)
