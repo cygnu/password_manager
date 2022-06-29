@@ -110,4 +110,29 @@ class AccountTest extends TestCase
             ->assertStatus(200)
             ->assertJsonFragment($data);
     }
+
+    /**
+     * @test
+     */
+    public function delete_account()
+    {
+        $content = Content::factory()->create();
+
+        $accounts = Account::factory()
+                        ->count(5)
+                        ->create([
+                            'content_id' => $content->content_id
+                        ]);
+
+        $first_account_id= $accounts->toArray()[0]["account_id"];
+        dump($first_account_id);
+
+        $response = $this->deleteJson("/api/account/$first_account_id");
+
+        $response
+            ->assertStatus(202)
+            ->assertJson([
+                'message' => 'Records deleted'
+            ]);
+    }
 }
