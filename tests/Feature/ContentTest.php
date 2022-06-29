@@ -135,6 +135,30 @@ class ContentTest extends TestCase
     /**
      * @test
      */
+    public function it_cannot_be_updated_if_content_name_or_content_url_are_empty()
+    {
+        $content = Content::factory()->create();
+
+        $data = [
+            "content_name" => "",
+            "content_image" => "https://via.placeholder.com/640x480.png/004400?text=perspiciatis",
+            "content_url" => "http://www.denesik.net/aut-ut-blanditiis-occaecati-et.html",
+            "is_one_account" => false,
+            "is_paid_subscription" => true
+        ];
+
+        $response = $this->putJson("api/content/{$content->content_id}", $data);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonValidationErrors([
+                "content_name" => "The content name field is required."
+            ]);
+    }
+
+    /**
+     * @test
+     */
     public function delete_content()
     {
         $contents = Content::factory()->count(5)->create();
