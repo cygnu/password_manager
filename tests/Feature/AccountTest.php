@@ -52,4 +52,27 @@ class AccountTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * @test
+     */
+    public function create_account()
+    {
+        $content = Content::factory()->create();
+
+        $data = [
+            "account_name" => "foo",
+            "content_id" => $content->content_id,
+            "email_address" => "test1@test.com",
+            "password" => "123456",
+            "is_multi_factor_authentication" => true,
+            "is_use_oauth2" => true
+        ];
+
+        $response = $this->postJson('/api/accounts', $data);
+
+        $response
+            ->assertStatus(201)
+            ->assertJsonFragment($data);
+    }
 }
