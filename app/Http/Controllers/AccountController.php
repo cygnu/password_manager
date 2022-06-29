@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Modles\Content;
+use App\Http\Requests\AccountRequest;
 
 class AccountController extends Controller
 {
@@ -13,20 +15,20 @@ class AccountController extends Controller
         return response()->json($accounts, 200);
     }
 
-    public function createAccount(Request $request)
+    public function createAccount(AccountRequest $request)
     {
         $account = new Account;
         $account->account_name = $request->account_name;
-        $account->account_image = $request->account_image;
+        $account->content_id = $request->content_id;
         $account->email_address = $request->email_address;
         $account->password = $request->password;
         $account->is_multi_factor_authentication = $request->is_multi_factor_authentication;
         $account->is_use_oauth2 = $request->is_use_oauth2;
         $account->save();
 
-        return response()->json([
-            "message" => "Account record created"
-        ], 201);
+        return $account
+            ? response()->json($account, 201)
+            : response()->json([], 500);
     }
 
     public function getAccount($account_id)
