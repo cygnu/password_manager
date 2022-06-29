@@ -30,4 +30,26 @@ class AccountTest extends TestCase
         $response
             ->assertStatus(200);
     }
+
+    /**
+     * @test
+     */
+    public function get_account()
+    {
+        $content = Content::factory()->create();
+
+        $accounts = Account::factory()
+                        ->count(5)
+                        ->create([
+                            'content_id' => $content->content_id
+                        ]);
+
+        $first_account_id = $accounts->toArray()[0]["account_id"];
+        dump($first_account_id);
+
+        $response = $this->getJson("/api/account/$first_account_id");
+        // dd($response->json());
+
+        $response->assertStatus(200);
+    }
 }
