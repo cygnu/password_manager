@@ -55,10 +55,10 @@ class ContentController extends Controller
             $content->is_paid_subscription = $request->is_paid_subscription;
             $content->save();
 
-            return response()->json([
-                "message" => "Records updated successfully"
-            ], 200);
-            } else {
+            return $content->update()
+                ? response()->json($content, 200)
+                : response()->json([], 500);
+        } else {
             return response()->json([
                 "message" => "Content not found"
             ], 404);
