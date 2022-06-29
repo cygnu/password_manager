@@ -80,4 +80,34 @@ class AccountTest extends TestCase
     {
         //
     }
+
+    /**
+     * @test
+     */
+    public function update_account()
+    {
+        $content = Content::factory()->create();
+
+        $account = Account::factory()
+                        ->create([
+                            'content_id' => $content->content_id
+                        ]);
+
+        $data = [
+            "account_name" => "buzz",
+            "content_id" => $content->content_id,
+            "email_address" => "test3@test.com",
+            "password" => "789123",
+            "is_multi_factor_authentication" => false,
+            "is_use_oauth2" => true
+        ];
+
+        $this->withoutExceptionHandling();
+
+        $response = $this->putJson("/api/account/{$account->account_id}", $data);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment($data);
+    }
 }
