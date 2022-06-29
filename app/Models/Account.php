@@ -16,6 +16,7 @@ class Account extends Model
 
     protected $fillable = [
         'account_name',
+        'content_id',
         'email_address',
         'password',
         'is_multi_factor_authentication',
