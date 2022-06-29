@@ -35,7 +35,7 @@ class AccountController extends Controller
     {
         if (Account::where('account_id', $account_id)->exists()) {
             $account = Account::where('account_id', $account_id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($account, 200);
+            return response()->json($account, 200);
         } else {
             return response()->json([
               "message" => "Account not found"
