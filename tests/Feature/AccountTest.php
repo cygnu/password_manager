@@ -75,4 +75,9 @@ class AccountTest extends TestCase
             ->assertStatus(201)
             ->assertJsonFragment($data);
     }
+
+    public function it_can_be_ready_is_password_hashing()
+    {
+        //
+    }
 }
