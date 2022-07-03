@@ -4,12 +4,21 @@ namespace Tests\Feature;
 
 use App\Models\Account;
 use App\Models\Content;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AccountTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $user = User::factory()->create();
+        $this->actingAs($user);
+    }
+
     /**
      * @test
      */

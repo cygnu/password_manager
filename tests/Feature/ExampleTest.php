@@ -16,11 +16,7 @@ class ExampleTest extends TestCase
         dd(env('APP_ENV'), env('DB_DATABASE'), env('DB_CONNECTION'));
     }
 
-    /**
-     * @return void
-     * @test
-     */
-    public function set_up()
+    public function setUp(): void
     {
         parent::setUp();
         $this->seed('AccountSeeder');
