@@ -20,6 +20,11 @@ return new class extends Migration
             $table->string('content_url');
             $table->boolean('is_one_account')->default(true);
             $table->boolean('is_paid_subscription')->default(false);
+            $table->unsignedBigInteger('user_id')
+                  ->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }
