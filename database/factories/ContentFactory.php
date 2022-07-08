@@ -24,6 +24,7 @@ class ContentFactory extends Factory
             'content_url' => $this->faker->url(),
             'is_one_account' => $this->faker->boolean(15),
             'is_paid_subscription' => $this->faker->boolean(10),
+            'user_id' => $this->faker->numberBetween(1,2),
             'created_at' => now(),
             'updated_at' => now(),
         ];
