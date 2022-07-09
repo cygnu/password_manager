@@ -12,7 +12,9 @@ class ContentController extends Controller
      */
     public function getAllContents()
     {
-        $contents = Content::orderByDesc('updated_at')->paginate(20);
+        $contents = Content::where('user_id', \Auth::id())
+            ->orderByDesc('updated_at')
+            ->paginate(20);
 
         return response()->json($contents, 200);
     }
