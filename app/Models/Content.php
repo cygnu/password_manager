@@ -22,10 +22,10 @@ class Content extends Model
         'content_url',
         'is_one_account',
         'is_paid_subscription',
+        'user_id'
     ];
 
-    // protected $casts = [
-    //     'is_one_account' => 'boolean',
-    //     'is_paid_subscription' => 'boolean',
-    // ];
+    protected $casts = [
+        'user_id' => 'int'
+    ];
 }
