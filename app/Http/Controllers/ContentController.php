@@ -21,6 +21,10 @@ class ContentController extends Controller
 
     public function createContent(ContentRequest $request)
     {
+        $request->merge([
+            'user_id' => \Auth::id()
+        ]);
+
         $content = new Content;
         $content->content_name = $request->content_name;
         $content->content_image = $request->content_image;
