@@ -7,6 +7,14 @@ use App\Models\Content;
 
 class ContentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:checkUser,content')->only([
+            'updateContent',
+            'deleteContent'
+        ]);
+    }
+
     /**
      * contents overview
      */
