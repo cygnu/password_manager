@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +17,9 @@ use App\Http\Controllers\ContentController;
 |
 */
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [UserController::class, 'login']);
 
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/user', function (Request $request) {
