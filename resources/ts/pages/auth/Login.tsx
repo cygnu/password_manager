@@ -10,7 +10,7 @@ const schema = yup
   })
   .required()
 
-export const AuthPage: React.FC = () => {
+export const Login: React.FC = () => {
   const {
     register,
     handleSubmit,

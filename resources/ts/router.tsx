@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Login } from './pages/auth/Login'
 import { ContentsPage } from './pages/content'
 
 export const Router = () => {
@@ -7,7 +8,7 @@ export const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/about" element={<About />} />
-        <Route path="/users" element={<Users />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<ContentsPage />} />
       </Routes>
     </BrowserRouter>
