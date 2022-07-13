@@ -1,11 +1,14 @@
 import React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import emotionReset from 'emotion-reset'
 import { Global, css } from '@emotion/react'
 import { Router } from './router'
 
+const queryClient = new QueryClient()
+
 export const App = () => {
   return (
-    <React.Fragment>
+    <QueryClientProvider client={queryClient}>
       <Global
         styles={css`
           ${emotionReset}
@@ -15,6 +18,6 @@ export const App = () => {
         `}
       />
       <Router />
-    </React.Fragment>
+    </QueryClientProvider>
   )
 }
