@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import axios from 'axios'
 
 const schema = yup
   .object({
@@ -11,6 +12,17 @@ const schema = yup
   .required()
 
 export const Login: React.FC = () => {
+  useEffect(() => {
+    axios
+      .post('api/login', {
+        email: 'admin@example.com',
+        password: '123456'
+      })
+      .then((response) => {
+        console.log(response)
+      })
+  }, [])
+
   const {
     register,
     handleSubmit,
@@ -24,9 +36,9 @@ export const Login: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="login">Login</label>
-      <input {...register("email")} type="text" />
+      <input {...register('email')} type="text" />
       <label htmlFor="password">Password</label>
-      <input {...register("password")} type="password" />
+      <input {...register('password')} type="password" />
       <input type="submit" />
     </form>
   )
