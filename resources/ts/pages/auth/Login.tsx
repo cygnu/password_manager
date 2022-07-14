@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import axios from 'axios'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useSignIn } from '../../queries/AuthQuery'
 
 const schema = yup
   .object({
@@ -12,29 +12,24 @@ const schema = yup
   .required()
 
 export const Login: React.FC = () => {
-  useEffect(() => {
-    axios
-      .post('api/login', {
-        email: 'admin@example.com',
-        password: '123456'
-      })
-      .then((response) => {
-        console.log(response)
-      })
-  }, [])
+  const signIn = useSignIn()
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
+  const { register } = useForm({
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = (data: any) => console.log(data)
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    signIn.mutate({ email: 'test@example.com', password: 'ee' })
+
+    const validationError = await schema.validate({ email: 'test@example.com', password: 'ee' }).catch((err) => {
+      return err
+    })
+    console.log(validationError.errors.message)
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <label htmlFor="login">Login</label>
       <input {...register('email')} type="text" />
       <label htmlFor="password">Password</label>
