@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useSignIn } from '../../queries/AuthQuery'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const schema = yup
   .object({
@@ -25,7 +27,7 @@ export const Login: React.FC = () => {
     const validationError = await schema.validate({ email: 'test@example.com', password: 'ee' }).catch((err) => {
       return err
     })
-    console.log(validationError.errors.message)
+    toast.error(validationError.errors.message)
   }
 
   return (
@@ -35,6 +37,7 @@ export const Login: React.FC = () => {
       <label htmlFor="password">Password</label>
       <input {...register('password')} type="password" />
       <input type="submit" />
+      <ToastContainer />
     </form>
   )
 }
