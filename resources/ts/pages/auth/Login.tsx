@@ -1,38 +1,21 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
 import { useSignIn } from '../../queries/AuthQuery'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const schema = yup
-  .object({
-    email: yup.string().email().max(10, 'Email is invalid').required('Required'),
-    password: yup.string().min(6, 'Password should be longer than 6 characters').required('Required')
-  })
-  .required()
-
 export const Login: React.FC = () => {
   const signIn = useSignIn()
 
-  const { register } = useForm({
-    resolver: yupResolver(schema)
+  const { handleSubmit, register } = useForm()
+
+  const onSubmit = handleSubmit(async ({ email, password }) => {
+    signIn.mutate({ email: email, password: password })
   })
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    signIn.mutate({ email: 'test@example.com', password: 'ee' })
-
-    const validationError = await schema.validate({ email: 'test@example.com', password: 'ee' }).catch((err) => {
-      return err
-    })
-    toast.error(validationError.errors.message)
-  }
 
   return (
     <form onSubmit={onSubmit}>
-      <label htmlFor="login">Login</label>
+      <label htmlFor="email">Email</label>
       <input {...register('email')} type="text" />
       <label htmlFor="password">Password</label>
       <input {...register('password')} type="password" />
