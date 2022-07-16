@@ -1,15 +1,20 @@
-import * as api from '../api/AuthAPI'
 import { useMutation, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
+import * as api from '../api/AuthAPI'
+import { useAuth } from '../hooks/AuthContext'
 
 const useUser = () => {
   return useQuery('users', api.getUser)
 }
 
 const useSignIn = () => {
+  const { setIsAuth } = useAuth()
+
   return useMutation(api.signIn, {
     onSuccess: (user) => {
-      console.log(user)
+      if (user) {
+        setIsAuth(true)
+      }
     },
     onError: () => {
       toast.error('Login failed.')
@@ -18,9 +23,13 @@ const useSignIn = () => {
 }
 
 const useSignOut = () => {
+  const { setIsAuth } = useAuth()
+
   return useMutation(api.signOut, {
     onSuccess: (user) => {
-      console.log(user)
+      if (user) {
+        setIsAuth(false)
+      }
     },
     onError: () => {
       toast.error('Logout failed.')
