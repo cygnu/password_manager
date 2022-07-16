@@ -4,17 +4,7 @@ import axios from 'axios'
 import { Image } from '@mui/icons-material'
 import { Box, Button, CardContent, Typography } from '@mui/material'
 import { css } from '@emotion/react'
-
-type Content = {
-  content_id: string
-  content_name: string
-  content_image: string
-  content_url: string
-  is_one_account: boolean
-  is_paid_subscription: boolean
-  created_at: Date
-  updated_at: Date
-}
+import { Content } from '../../types/Content'
 
 export const ContentsPage: React.FC = () => {
   const [contents, setContents] = useState<Content[]>([])
