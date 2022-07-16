@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useMutation, useQuery } from 'react-query'
 import { toast } from 'react-toastify'
 import * as api from '../api/AuthAPI'
@@ -9,11 +10,13 @@ const useUser = () => {
 
 const useSignIn = () => {
   const { setIsAuth } = useAuth()
+  const navigate = useNavigate()
 
   return useMutation(api.signIn, {
     onSuccess: (user) => {
       if (user) {
         setIsAuth(true)
+        navigate('/')
         toast.success('Login success.')
       }
     },
