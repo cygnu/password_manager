@@ -1,22 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React from 'react'
 import { Image } from '@mui/icons-material'
 import { Box, Button, CardContent, Typography } from '@mui/material'
 import { css } from '@emotion/react'
-import { Content } from '../../types/Content'
 
 export const ContentsPage: React.FC = () => {
-  const [contents, setContents] = useState<Content[]>([])
-  const getContents = async () => {
-    const { data } = await axios.get<Content[]>('api/contents')
-    setContents(data)
-  }
-
-  useEffect(() => {
-    getContents()
-  })
-
   return (
     <div css={container}>
       <Box css={containerBox}>
