@@ -14,6 +14,7 @@ const useSignIn = () => {
     onSuccess: (user) => {
       if (user) {
         setIsAuth(true)
+        toast.success('Login success.')
       }
     },
     onError: () => {

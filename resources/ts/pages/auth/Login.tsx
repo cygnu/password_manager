@@ -9,8 +9,8 @@ export const Login: React.FC = () => {
 
   const { handleSubmit, register } = useForm()
 
-  const onSubmit = handleSubmit(async ({ email, password }) => {
-    signIn.mutate({ email: email, password: password })
+  const onSubmit = handleSubmit(async (data) => {
+    signIn.mutate({ email: data.email, password: data.password })
   })
 
   return (
