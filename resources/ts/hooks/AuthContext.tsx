@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, ReactNode, useContext, useState } from 'react'
 
 type AuthContextProps = {
   isAuth: boolean
@@ -10,7 +10,7 @@ const AuthContext = createContext<AuthContextProps>({
   setIsAuth: () => {}
 })
 
-export const AuthProvider: React.FC = (props: any) => {
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false)
 
   return (
@@ -20,7 +20,7 @@ export const AuthProvider: React.FC = (props: any) => {
         setIsAuth
       }}
     >
-      {props.children}
+      {children}
     </AuthContext.Provider>
   )
 }
