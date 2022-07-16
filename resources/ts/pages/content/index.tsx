@@ -3,8 +3,19 @@ import React from 'react'
 import { Image } from '@mui/icons-material'
 import { Box, Button, CardContent, Typography } from '@mui/material'
 import { css } from '@emotion/react'
+import { useContents } from '../../queries/ContentQuery'
 
 export const ContentsPage: React.FC = () => {
+  const { data: contents, status } = useContents()
+
+  if (status === 'loading') {
+    return <div className="loader" />
+  } else if (status === 'error') {
+    return <div>Failed to load data.</div>
+  } else if (!contents || contents.length <= 0) {
+    return <div>There is no data to display.</div>
+  }
+
   return (
     <div css={container}>
       <Box css={containerBox}>
