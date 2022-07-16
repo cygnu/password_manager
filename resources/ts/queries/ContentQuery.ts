@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query'
-import axios from 'axios'
-import { Content } from '../types/Content'
+import * as api from '../api/ContentAPI'
 
-const { data: contents, status } = useQuery('contents', async () => {
-  const { data } = await axios.get<Content[]>('api/contents')
-  return data
-})
+const useContents = () => {
+  return useQuery('contents', api.getContents)
+}
+
+export { useContents }
