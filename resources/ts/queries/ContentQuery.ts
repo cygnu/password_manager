@@ -20,4 +20,36 @@ const useCreateContent = () => {
   })
 }
 
-export { useContents, useCreateContent }
+const useContent = (content_id: number) => {
+  return useQuery(['content', content_id], () => api.getContent(content_id))
+}
+
+const useUpdateContent = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation(api.updateContent, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('contents')
+      toast.success('Successfully updated!')
+    },
+    onError: () => {
+      toast.error('Update failed.')
+    }
+  })
+}
+
+const useDeleteContent = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation(api.deleteContent, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('contents')
+      toast.success('Successfully deleted!')
+    },
+    onError: () => {
+      toast.error('Deletion failed.')
+    }
+  })
+}
+
+export { useContents, useCreateContent, useContent, useUpdateContent, useDeleteContent }
