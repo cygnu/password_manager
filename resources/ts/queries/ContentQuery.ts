@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 import * as api from '../api/ContentAPI'
 
-const useContents = () => {
-  return useQuery('contents', () => api.getContents())
+const useContents = (currentPage: number) => {
+  return useQuery(['contents', currentPage], () => api.getContents(currentPage))
 }
 
 const useCreateContent = () => {

@@ -8,10 +8,10 @@ import { useContents } from '../../queries/ContentQuery'
 import { Content } from '../../types/Content'
 
 export const ContentsPage: React.FC = () => {
-  const { data: contents, status } = useContents()
   const [postsPerPage] = useState(20)
   const [pageCount, setPageCount] = useState(0)
   const [currentPage, setPage] = useState(1)
+  const { data: contents, status } = useContents(currentPage)
 
   useEffect(() => {
     if (contents) {
