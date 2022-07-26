@@ -6,6 +6,7 @@ import { Box, Button, CardContent, Typography } from '@mui/material'
 import { css } from '@emotion/react'
 import { useContents } from '../../queries/ContentQuery'
 import { Content } from '../../types/Content'
+import { Header } from '../../components/Header'
 
 export const ContentsPage: React.FC = () => {
   const [postsPerPage] = useState(20)
@@ -34,7 +35,8 @@ export const ContentsPage: React.FC = () => {
   }
 
   return (
-    <div css={container}>
+    <div>
+      <Header />
       <Box css={containerBox}>
         <CardContent css={cBContent}>
           {contents!.data.map((content: Content) => (
@@ -61,12 +63,9 @@ export const ContentsPage: React.FC = () => {
   )
 }
 
-const container = css`
-  margin-top: 64px;
-`
-
 const containerBox = css`
   margin: 0 auto;
+  margin-top: 30px;
   width: 80%;
   max-width: 800px;
   border: 1px solid;
