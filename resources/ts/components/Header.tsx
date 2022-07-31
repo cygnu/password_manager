@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { AppBar, Toolbar, Typography, Button } from '@mui/material'
 import { css } from '@emotion/react'
@@ -7,14 +7,8 @@ import { useAuth } from '../hooks/AuthContext'
 import { useUser } from '../queries/AuthQuery'
 
 export const Header: React.FC = () => {
-  const { isAuth, setIsAuth } = useAuth()
-  const { isLoading, data: authUser } = useUser()
-
-  useEffect(() => {
-    if (authUser) {
-      setIsAuth(true)
-    }
-  }, [authUser])
+  const { isAuth } = useAuth()
+  const { data: authUser } = useUser()
 
   return (
     <AppBar position="static" css={appBar}>
