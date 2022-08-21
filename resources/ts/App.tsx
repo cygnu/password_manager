@@ -5,7 +5,14 @@ import { Global, css } from '@emotion/react'
 import { AuthProvider } from './hooks/AuthContext'
 import { Router } from './router'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false
+    }
+  }
+})
 
 export const App = () => {
   return (
